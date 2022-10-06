@@ -1,0 +1,37 @@
+<h1>Template Driven Form</h1>
+<form #templateForm="ngForm" (ngSubmit)="onSubmit(templateForm)">
+ 
+    <p>
+      <label for="firstname">First Name</label><br>
+      <input class="def" type="text" id="firstname" required minlength="5" name="firstname" #firstname="ngModel" ngModel><br>
+      
+      <small class="invalid" *ngIf="firstname.touched && !firstname.valid">Invalid Firstname</small>
+    </p>
+    <p>
+      <label for="lastname">Last Name</label><br>
+      <input type="text" id="lastname" required maxlength="4" name="lastname"ngModel #lastname="ngModel"><br>
+      <small *ngIf="lastname.touched && !lastname.valid">Invalid lastname</small>
+    </p>
+   
+    <p>
+      <label for="email">Email </label>
+      <input type="text" id="email" required name="email"  ngModel>
+    </p>
+   
+    <p>
+      <label for="gender">Gender</label>
+      <input type="radio" value="male" id="gender" name="gender"  ngModel> Male
+      <input type="radio" value="female" id="gender" name="gender" ngModel> Female
+    </p>
+    <p>
+      <label for="country">Country</label>
+      <select name="country" id="country" ngModel>
+        <option value=""></option>
+        <option *ngFor="let c of country" >{{c.name}}</option>
+      </select>
+    </p>
+    <p>
+      <button type="submit" [disabled]="!templateForm.valid">Submit</button>
+    </p>
+   
+  </form>
